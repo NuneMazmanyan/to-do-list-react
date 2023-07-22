@@ -5,24 +5,25 @@ import {GenerateNewTaskComponent} from "./components/generateNewTaskComponent/ge
 import './tailwindcss.css'
 
 function App() {
-  const [areDoneTasksHidden, setChecked] = React.useState(false);
+    const [areDoneTasksHidden, setChecked] = React.useState(false);
 
-  return (
-      <div className="m-10 min-w-fit">
-        <div>
-          <div className="flex flex-row-reverse">
-              <label htmlFor="app-tasks-checkbox" className="text-sm ml-1 font-semibold">{areDoneTasksHidden ? "Done tasks are hidden" : "Hide done tasks"}</label>
-              <input id="app-tasks-checkbox" value={areDoneTasksHidden} type="checkbox" onChange={ () => {
-              setChecked((isChecked) => !isChecked);
-            }}/>
-           </div>
+    return (
+        <div className="m-10 min-w-fit">
+            <div>
+                <div className="flex flex-row-reverse">
+                    <label htmlFor="app-tasks-checkbox"
+                           className="text-sm ml-1 font-semibold">{areDoneTasksHidden ? "Done tasks are hidden" : "Hide done tasks"}</label>
+                    <input id="app-tasks-checkbox" value={areDoneTasksHidden} type="checkbox" onChange={() => {
+                        setChecked((isChecked) => !isChecked);
+                    }}/>
+                </div>
 
-          <GenerateNewTaskComponent />
+                <GenerateNewTaskComponent/>
 
-          <ToDoListComponent checkedStatus={areDoneTasksHidden}/>
+                <ToDoListComponent checkedStatus={areDoneTasksHidden}/>
+            </div>
         </div>
-      </div>
-  );
+    );
 }
 
 export default App;

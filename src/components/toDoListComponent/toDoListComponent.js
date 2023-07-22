@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {ToDoListItemComponent} from './toDoListItemComponent/toDoListItemComponent';
-import {getTasks} from "../../services/apiCalls.service";
 
 export const ToDoListComponent = (props) => {
     let MockData = [
@@ -25,12 +24,17 @@ export const ToDoListComponent = (props) => {
             status: "not completed"
         }
     ];
-    let toDos = [];
 
-    useEffect(() => {
-        toDos = getTasks().then()
-        console.log(toDos)
-    }, []);
+    // let toDos = [];
+
+    // useEffect(() => {
+    //     toDos = getTasks().then()
+    //     console.log(toDos)
+    // }, []);
+
+    function changeStatus(task) {
+        MockData[MockData.findIndex(task => task._id === task._id)].status = (task.status === 'completed' ? 'not completed' : 'completed');
+    }
 
     if (MockData.length) {
         let filteredToDos = props.checkedStatus
@@ -40,15 +44,17 @@ export const ToDoListComponent = (props) => {
         return (
             <ul role="list" className="divide-y divide-gray-100">
                 {filteredToDos.map((MockData) => (
-                    <ToDoListItemComponent key={MockData._id} task={MockData} />
+                    <ToDoListItemComponent key={MockData._id} task={MockData} changeStatus={changeStatus}/>
                 ))}
             </ul>
         );
     } else {
         return (
             <div className="no-to-dos">
-                <h2 className="text-slate-300 font-semibold text-2xl text-center">Your life is a blank page. You write on it.</h2>
-                <h1 className="text-slate-500 font-semibold text-4xl text-center">So start by adding your tasks here.</h1>
+                <h2 className="text-slate-300 font-semibold text-2xl text-center">Your life is a blank page. You write
+                    on it.</h2>
+                <h1 className="text-slate-500 font-semibold text-4xl text-center">So start by adding your tasks
+                    here.</h1>
             </div>
         );
     }

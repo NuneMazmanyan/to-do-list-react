@@ -19,15 +19,18 @@ export function addTask(taskName) {
         method: 'Post',
         body: JSON.stringify({
             text: taskName
-        }) })
-        .then(() => this.setState({ status: 'Added successful' }));
+        })
+    })
+        .then(() => this.setState({status: 'Added successful'}));
 }
 
+//implemented for future
 export function updateStatus(task) {
     fetch(`${APIPath}/${task.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
             status: task.status
-        }) })
-        .then(() => this.setState({ status: 'Delete successful' }));
+        })
+    })
+        .then(() => this.setState({status: 'Delete successful'}));
 }

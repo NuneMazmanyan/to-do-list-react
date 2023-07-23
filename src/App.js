@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import {ToDoListComponent} from "./components/toDoListComponent/toDoListComponent";
-import {GenerateNewTaskComponent} from "./components/generateNewTaskComponent/generateNewTaskComponent";
+import {ToDoList} from "./components/toDoListComponent/ToDoList";
+import {NewTask} from "./components/NewTask/NewTask";
 import './tailwindcss.css'
 
 function App() {
@@ -12,15 +12,15 @@ function App() {
             <div>
                 <div className="flex flex-row-reverse">
                     <label htmlFor="app-tasks-checkbox"
-                           className="text-sm ml-1 font-semibold">{areDoneTasksHidden ? "Done tasks are hidden" : "Hide done tasks"}</label>
+                           className="text-sm ml-1 font-semibold">Hide done tasks</label>
                     <input id="app-tasks-checkbox" value={areDoneTasksHidden} type="checkbox" onChange={() => {
                         setChecked((isChecked) => !isChecked);
                     }}/>
                 </div>
 
-                <GenerateNewTaskComponent/>
+                <NewTask/>
 
-                <ToDoListComponent checkedStatus={areDoneTasksHidden}/>
+                <ToDoList checkedStatus={areDoneTasksHidden} />
             </div>
         </div>
     );

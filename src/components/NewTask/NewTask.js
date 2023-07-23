@@ -2,7 +2,7 @@ import React, {useRef} from "react";
 import {addTask} from "../../services/apiCalls.service";
 import '../../tailwindcss.css'
 
-export const GenerateNewTaskComponent = () => {
+export const NewTask = () => {
     const taskName = useRef()
     const submit = (e) => {
         e.preventDefault()

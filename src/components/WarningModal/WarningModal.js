@@ -8,10 +8,15 @@ function deleteTask(id) {
         .then(() => this.setState({status: 'Delete successful'}));
 }
 
-export default function WarningModalComponent(task) {
+export default function WarningModal(task) {
     const [open, setOpen] = useState(true)
 
     const cancelButtonRef = useRef(null)
+
+    function deleteTask() {
+        deleteTask(task.id);
+        setOpen(false)
+    }
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -65,10 +70,7 @@ export default function WarningModalComponent(task) {
                                     <button
                                         type="button"
                                         className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                        onClick={() => {
-                                            deleteTask(task.id);
-                                            setOpen(false)
-                                        }}
+                                        onClick={() => {deleteTask()}}
                                     >Delete
                                     </button>
                                     <button

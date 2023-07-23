@@ -1,10 +1,11 @@
-const APIPath = "https://todo-api-shin.vercel.app/api/todos";
+const APIPath = "https://todo-api-for-trainees-git-tmp-tigranmn.vercel.app/api/todos";
 
 export async function getTasks() {
     let toDos = []
-    await fetch(APIPath)
+    await fetch(APIPath, {mode: 'no-cors'})
         .then((res) => res.json())
         .then((data) => {
+            console.log(data)
             toDos.push(data)
         })
         .catch((err) => {
@@ -18,10 +19,12 @@ export function addTask(taskName) {
     fetch(APIPath, {
         method: 'Post',
         body: JSON.stringify({
-            text: taskName
+            text: taskName,
+            status: 'not completed',
+            _id: 'dytxfucigvhjb'
         })
     })
-        .then(() => this.setState({status: 'Added successful'}));
+        .then(() => console.log('added'));
 }
 
 //implemented for future

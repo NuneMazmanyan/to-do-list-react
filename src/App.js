@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {ToDoList} from "./components/toDoListComponent/ToDoList";
+import {ToDoList} from "./components/ToDoList/ToDoList";
 import {NewTask} from "./components/NewTask/NewTask";
 import './tailwindcss.css'
 

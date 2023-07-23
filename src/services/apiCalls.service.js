@@ -5,7 +5,6 @@ export async function getTasks() {
     await fetch(APIPath, {mode: 'no-cors'})
         .then((res) => res.json())
         .then((data) => {
-            console.log(data)
             toDos.push(data)
         })
         .catch((err) => {

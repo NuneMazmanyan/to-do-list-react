@@ -2,24 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {ToDoListItem} from './ToDoListItem/ToDoListItem';
 import {getTasks} from "../../services/apiCalls.service";
 
-export const ToDoList = (checkedStatus) => {
+export const ToDoList = (props) => {
     const [tasks, setTasks] = useState([])
 
-    let filteredTasks = checkedStatus
+    let filteredTasks = props.checkedStatus
         ? tasks.filter(task => task.status !== "completed")
         : tasks;
 
-    const getToDos = async () => {
-        setTasks(await getTasks())
-        console.log(await getTasks())
-    }
-
     useEffect(() => {
-        getToDos()
-    }, []);
+        setTasks(getTasks())
+    });
 
     function changeStatus(task) {
-        tasks[tasks.findIndex((task) => task._id === task._id)].status = (task.status === 'completed' ? 'not completed' : 'completed')
+        tasks[tasks.findIndex((task) => task.id === task.id)].status = (task.status === 'completed' ? 'not completed' : 'completed')
         setTasks(tasks);
     }
 

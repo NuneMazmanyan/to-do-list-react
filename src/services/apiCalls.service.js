@@ -1,38 +1,38 @@
-const APIPath = "https://todo-api-for-trainees-git-tmp-tigranmn.vercel.app/api/todos";
+let tasks = [];
 
-export async function getTasks() {
-    let toDos = []
-    await fetch(APIPath, {mode: 'no-cors'})
-        .then((res) => res.json())
-        .then((data) => {
-            toDos.push(data)
-        })
-        .catch((err) => {
-            console.log(err.message);
-        });
+function generateId() {
+    let id = Math.floor(Math.random()*100000000)
+    if(tasks.find(task => task.id === id)){
+        generateId()
+    }
+    return id;
+}
 
+export function getTasks() {
+    let toDos = JSON.parse(localStorage.getItem("tasks"))
     return toDos;
 }
 
 export function addTask(taskName) {
-    fetch(APIPath, {
-        method: 'Post',
-        body: JSON.stringify({
-            text: taskName,
-            status: 'not completed',
-            _id: 'dytxfucigvhjb'
-        })
+    tasks.push({
+        text: taskName,
+        status: 'not completed',
+        id: generateId()
     })
-        .then(() => console.log('added'));
+    updateLocalStorage();
 }
 
-//implemented for future
-export function updateStatus(task) {
-    fetch(`${APIPath}/${task.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({
-            status: task.status
-        })
-    })
-        .then(() => this.setState({status: 'Delete successful'}));
+export function deleteTaskById(taskId) {
+    tasks = tasks.filter(task => task.id !== taskId);
+    updateLocalStorage();
+}
+
+function updateLocalStorage() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+export function updateStatus(taskId) {
+    const index = tasks.findIndex(task => task.id === taskId)
+    tasks[index].status = tasks[index].status === "completed" ? "not completed" : "completed";
+    updateLocalStorage();
 }

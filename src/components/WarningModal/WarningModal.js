@@ -2,19 +2,16 @@ import React, {Fragment, useRef, useState} from 'react';
 import {Dialog, Transition} from '@headlessui/react'
 import {ExclamationTriangleIcon} from '@heroicons/react/24/outline'
 import '../../tailwindcss.css'
+import {deleteTaskById} from "../../services/apiCalls.service"
 
-function deleteTask(id) {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {method: 'DELETE'})
-        .then(() => this.setState({status: 'Delete successful'}));
-}
-
-export default function WarningModal(task) {
+export default function WarningModal(props) {
     const [open, setOpen] = useState(true)
-
     const cancelButtonRef = useRef(null)
 
+    let task = props.task;
+
     function deleteTask() {
-        deleteTask(task.id);
+        deleteTaskById(task.id);
         setOpen(false)
     }
 

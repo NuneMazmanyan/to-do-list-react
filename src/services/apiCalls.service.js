@@ -1,4 +1,4 @@
-let tasks = [];
+let tasks = getTasks();
 
 function generateId() {
     let id = Math.floor(Math.random()*100000000)
@@ -9,8 +9,7 @@ function generateId() {
 }
 
 export function getTasks() {
-    let toDos = JSON.parse(localStorage.getItem("tasks"))
-    return toDos;
+    return JSON.parse(localStorage.getItem("tasks"));
 }
 
 export function addTask(taskName) {
@@ -36,3 +35,5 @@ export function updateStatus(taskId) {
     tasks[index].status = tasks[index].status === "completed" ? "not completed" : "completed";
     updateLocalStorage();
 }
+
+export default tasks;

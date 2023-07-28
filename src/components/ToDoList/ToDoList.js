@@ -1,28 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import {ToDoListItem} from './ToDoListItem/ToDoListItem';
-import {getTasks} from "../../services/apiCalls.service";
+import tasks from "../../services/apiCalls.service";
 
 export const ToDoList = ({checkedStatus}) => {
-    const [tasks, setTasks] = useState([])
+    const [tasksArr, setTasksArr] = useState([...tasks])
 
     let filteredTasks = checkedStatus
-        ? tasks.filter(task => task.status !== "completed")
-        : tasks;
+        ? tasksArr.filter(task => task.status !== "completed")
+        : tasksArr;
 
     useEffect(() => {
-        setTasks(getTasks())
-    });
+        setTasksArr([...tasks])
+        console.log('here', tasks)
+    }, [`${tasks}`]);
 
     function changeStatus(task) {
-        tasks[tasks.findIndex((task) => task.id === task.id)].status = (task.status === 'completed' ? 'not completed' : 'completed')
-        setTasks(tasks);
+        tasksArr[tasksArr.findIndex((task) => task.id === task.id)].status = (task.status === 'completed' ? 'not completed' : 'completed')
+        setTasksArr(tasksArr);
     }
 
-    if (tasks.length) {
+    if (tasksArr.length) {
         return (
             <ul role="list" className="divide-y divide-gray-100">
                 {filteredTasks.map((task) => (
-                    <ToDoListItem key={task.text} task={task} changeStatus={changeStatus}/>
+                    <ToDoListItem key={task.id} task={task} changeStatus={changeStatus}/>
                 ))}
             </ul>
         );
@@ -37,3 +38,4 @@ export const ToDoList = ({checkedStatus}) => {
         );
     }
 }
+

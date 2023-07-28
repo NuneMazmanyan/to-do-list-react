@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {ToDoListItem} from './ToDoListItem/ToDoListItem';
 import {getTasks} from "../../services/apiCalls.service";
 
-export const ToDoList = (props) => {
+export const ToDoList = ({checkedStatus}) => {
     const [tasks, setTasks] = useState([])
 
-    let filteredTasks = props.checkedStatus
+    let filteredTasks = checkedStatus
         ? tasks.filter(task => task.status !== "completed")
         : tasks;
 

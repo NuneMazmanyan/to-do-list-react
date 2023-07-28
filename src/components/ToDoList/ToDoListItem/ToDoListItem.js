@@ -3,14 +3,12 @@ import WarningModal from "../../WarningModal/WarningModal";
 import '../../../tailwindcss.css'
 import {updateStatus} from "../../../services/apiCalls.service";
 
-export const ToDoListItem = (props) => {
-    const [isModalOpened, setModalStatus] = useState(false)
+export const ToDoListItem = ({task}) => {
+    const [modalState, setModalState] = useState(false)
 
     const changeModalState = () => {
-        setModalStatus(!isModalOpened)
+        setModalState(!modalState)
     }
-
-    let task = props.task;
 
     return (
         <li className="gap-x-6 py-5 px-8">
@@ -28,7 +26,7 @@ export const ToDoListItem = (props) => {
                     <button onClick={changeModalState}>X</button>
                 </div>
             </div>
-            {isModalOpened ? <WarningModal task={task}/> : null}
+            {modalState ? <WarningModal task={task}/> : null}
         </li>
     )
 }

@@ -3,7 +3,7 @@ let tasks = [];
 function generateId() {
     let id = Math.floor(Math.random()*100000000)
     if(tasks.find(task => task.id === id)){
-        generateId()
+        id = generateId()
     }
     return id;
 }

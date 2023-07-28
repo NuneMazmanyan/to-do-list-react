@@ -9,7 +9,7 @@ function generateId() {
 }
 
 export function getTasks() {
-    return JSON.parse(localStorage.getItem("tasks"));
+    return JSON.parse(localStorage.getItem("tasks")) || [];
 }
 
 export function addTask(taskName) {

@@ -3,7 +3,7 @@ import {ToDoListItem} from './ToDoListItem/ToDoListItem';
 import tasks from "../../services/apiCalls.service";
 
 export const ToDoList = ({checkedStatus}) => {
-    const [tasksArr, setTasksArr] = useState([...tasks])
+    const [tasksArr, setTasksArr] = useState([])
 
     let filteredTasks = checkedStatus
         ? tasksArr.filter(task => task.status !== "completed")

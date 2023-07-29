@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import WarningModal from "../../WarningModal/WarningModal";
-import '../../../tailwindcss.css'
-import {updateStatus} from "../../../services/apiCalls.service";
+import '../../../tailwindcss.css';
+import TasksContext from '../../../providers/tasksContext.provider'; // Import the TasksContext
 
 export const ToDoListItem = ({task}) => {
+    const tasksContext = useContext(TasksContext);
+    const { updateStatus } = tasksContext;
+
     const [modalState, setModalState] = useState(false)
 
     const changeModalState = () => {

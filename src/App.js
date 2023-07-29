@@ -3,11 +3,13 @@ import './App.css';
 import {ToDoList} from "./components/ToDoList/ToDoList";
 import {NewTask} from "./components/NewTask/NewTask";
 import './tailwindcss.css'
+import { TasksContextProvider } from './providers/tasksContext.provider';
 
 function App() {
     const [areDoneTasksHidden, setChecked] = React.useState(false);
 
     return (
+        <TasksContextProvider>
         <div className="m-10 min-w-fit">
             <div>
                 <div className="flex flex-row-reverse">
@@ -23,6 +25,7 @@ function App() {
                 <ToDoList checkedStatus={areDoneTasksHidden} />
             </div>
         </div>
+        </TasksContextProvider>
     );
 }
 

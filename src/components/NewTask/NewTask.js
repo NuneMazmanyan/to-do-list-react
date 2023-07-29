@@ -1,8 +1,10 @@
-import React, {useRef} from "react";
-import {addTask} from "../../services/apiCalls.service";
+import React, {useContext, useRef} from "react";
 import '../../tailwindcss.css'
+import TasksContext from "../../providers/tasksContext.provider";
 
 export const NewTask = () => {
+    const tasksContext = useContext(TasksContext);
+    const { addTask } = tasksContext;
     const taskName = useRef()
     const submit = (e) => {
         e.preventDefault()

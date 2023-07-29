@@ -1,12 +1,16 @@
-import React, {Fragment, useRef, useState} from 'react';
+import React, {Fragment, useContext, useRef, useState} from 'react';
 import {Dialog, Transition} from '@headlessui/react'
 import {ExclamationTriangleIcon} from '@heroicons/react/24/outline'
-import '../../tailwindcss.css'
-import {deleteTaskById} from "../../services/apiCalls.service"
+import '../../tailwindcss.css';
+import TasksContext from "../../providers/tasksContext.provider";
+
 
 export default function WarningModal(props) {
     const [open, setOpen] = useState(true)
     const cancelButtonRef = useRef(null)
+
+    const tasksContext = useContext(TasksContext);
+    const { deleteTaskById } = tasksContext;
 
     let task = props.task;
 

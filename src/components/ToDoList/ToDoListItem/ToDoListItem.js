@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import WarningModal from "../../WarningModal/WarningModal";
 import '../../../tailwindcss.css';
-import TasksContext from '../../../providers/tasksContext.provider'; // Import the TasksContext
+import TasksContext from '../../../providers/tasksContext.provider';
 
 export const ToDoListItem = ({task}) => {
     const tasksContext = useContext(TasksContext);

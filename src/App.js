@@ -6,6 +6,7 @@ import './tailwindcss.css'
 import {TasksContextProvider} from './providers/tasksContext.provider';
 import {Route, Routes} from 'react-router-dom';
 import TaskDetails from "./components/TaskDetails/TaskDetails";
+import NoMatch from "./components/NoMatch/NoMatch";
 
 function App() {
     const [areDoneTasksHidden, setChecked] = React.useState(false);
@@ -32,6 +33,7 @@ function App() {
                     </div>
                 }/>
                 <Route path="/tasks/:taskId" element={<TaskDetails/>}/>
+                <Route path="*" element={<NoMatch />} />
             </Routes>
         </TasksContextProvider>
     );

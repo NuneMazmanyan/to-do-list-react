@@ -9,6 +9,7 @@ export const NewTask = () => {
     const submit = (e) => {
         e.preventDefault()
         addTask(taskName.current.value)
+        taskName.current.value = '';
     }
     return (
         <form className="App-new-task-creation_block" onSubmit={submit}>
@@ -18,7 +19,7 @@ export const NewTask = () => {
                        className="border-amber-300 border rounded text-sm p-1"/>
             </div>
             <div className=" flex flex-row-reverse">
-                <button type="submit" className="rounded bg-teal-700 text-white py-1 px-5 mt-2 text-sm">Add Task
+                <button type="submit" className="rounded bg-teal-700 text-white py-1 px-5 mt-2 text-sm hover:bg-teal-600">Add Task
                 </button>
             </div>
         </form>

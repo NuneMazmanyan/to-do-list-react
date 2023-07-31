@@ -46,12 +46,23 @@ export function TasksContextProvider({ children }) {
         );
     };
 
+    const renameTask = (taskId, newName) => {
+        setTasksArr(prevTasksArr =>
+            prevTasksArr.map(task =>
+                task.id === taskId
+                    ? {...task, text: newName}
+                    : task
+            )
+        )
+    }
+
+
     useEffect(() => {
         updateLocalStorage(tasksArr);
     }, [tasksArr]);
 
     return (
-        <TasksContext.Provider value={{ tasksArr, addTask, deleteTaskById, updateStatus }}>
+        <TasksContext.Provider value={{ tasksArr, addTask, deleteTaskById, updateStatus, renameTask }}>
             {children}
         </TasksContext.Provider>
     );

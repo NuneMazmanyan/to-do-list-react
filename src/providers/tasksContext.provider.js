@@ -56,13 +56,16 @@ export function TasksContextProvider({ children }) {
         )
     }
 
+    const getTaskById = (taskId) => {
+        return tasksArr.find(task => task.id == taskId);
+    }
 
     useEffect(() => {
         updateLocalStorage(tasksArr);
     }, [tasksArr]);
 
     return (
-        <TasksContext.Provider value={{ tasksArr, addTask, deleteTaskById, updateStatus, renameTask }}>
+        <TasksContext.Provider value={{ tasksArr, addTask, deleteTaskById, updateStatus, renameTask, getTaskById }}>
             {children}
         </TasksContext.Provider>
     );

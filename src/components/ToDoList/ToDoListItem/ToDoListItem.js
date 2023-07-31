@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import WarningModal from "../../WarningModal/WarningModal";
 import '../../../tailwindcss.css';
 import TasksContext from '../../../providers/tasksContext.provider';
+import {Link} from "react-router-dom";
 
 export const ToDoListItem = ({task}) => {
     const tasksContext = useContext(TasksContext);
@@ -38,11 +39,13 @@ export const ToDoListItem = ({task}) => {
                            onChange={() => updateStatus(task.id)}
                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
-                    <input type="text" htmlFor={task.id}
-                           ref={taskNameRef}
-                           disabled={isDisabled}
-                           defaultValue={task.text}
-                           className={task.status === 'completed' ? "text-slate-400 font-medium text-sm ml-4 align-top bg-white" : "text-slate-900 font-medium text-sm ml-4 align-top bg-white"}/>
+                    <Link to={`/tasks/${task.id}`}>
+                        <input type="text" htmlFor={task.id}
+                               ref={taskNameRef}
+                               disabled={isDisabled}
+                               defaultValue={task.text}
+                               className={task.status === 'completed' ? "underline underline-offset-2 text-slate-400 font-medium text-sm ml-4 align-top bg-white cursor-pointer" : "underline underline-offset-2 text-slate-900 font-medium text-sm ml-4 align-top bg-white cursor-pointer"}/>
+                    </Link>
                 </div>
                 <div>
                     <button onClick={saveChanges}
